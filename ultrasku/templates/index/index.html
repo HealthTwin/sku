@@ -1,0 +1,287 @@
+{% extends 'base_page.html' %}
+{% load static %}
+{% block title %}SKU Tracking{% endblock %}
+{% block content %}
+       <div class="container-fluid  div-row" >
+           <div class="elementor-background-overlay"></div>
+           <div class="path-div">
+               <svg   xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 100" preserveAspectRatio="none">
+<path class="elementor-shape-fill" d="M0,6V0h1000v100L0,6z"></path>
+</svg>
+           </div>
+           <div class="row">
+               <div class="col-12 col-md-6 d-flex justify-content-center align-items-center">
+                   <div class="section-right moving-div">
+                       <h1>SKU Tracking</h1>
+                   <p>يسهل موقع SKU Tracking علي تحليل البيانات بشكل مفصل بناء علي استراد الملفات والبيانات من نون وامازون ويقوم بفلترتها وفرزها بشكل واضح لمعالجة المشاكل بشكل سريع</p>
+                   <a href="{% url 'register' %}" class="btn custom-btn">
+                      سجل الان
+                      <span class="btn-icon"><i aria-hidden="true" class="fas fa-angle-left"></i></span>
+</a>
+                   </div>
+               </div>
+               <div class="col-12 col-md d-flex justify-content-center align-items-center vh-100 div-main pt-4">
+                   <img src="{% static 'images/big_hero@2x-8.png' %}"  class="img-scale">
+               </div>
+           </div>
+       </div>
+
+       <div class="container-fluid items-cards">
+           <div class="row">
+               <div class="col-6 col-md-3 mt-2">
+                   <div class="text-center bg-white shadow p-4 item-card">
+                       <img src="{% static 'images/Server.png' %}">
+                       <h3 class="pt-4 pb-4" >التحكم في الأسعار بسهولة</h3>
+                       <p>قم بتوفير 90٪ من وقتك للعثور على المنتجات التي تحتاج لتعديل الأسعار لتجاوز المنافسين بسهولة حيث يظهر لك فقط المنتجات التي تحتاج لتخفيض السعر فقط بدلاً من تصفح جميع المنتجات يدويا</p>
+                   </div>
+               </div>
+               <div class="col-6 col-md-3 mt-2">
+                    <div class="text-center bg-white shadow p-4 item-card">
+                       <img src="{% static 'images/Cloud-Storage.png' %}">
+                       <h3 class="pt-4 pb-4" >تحليل شامل للمنتجات</h3>
+                       <p>مشاهدة المنتجات التي تحتاج إلى زيادة المخزون أو المنتجات المتوقفة أو التي بها مشكلة معينة </p>
+                   </div>
+               </div>
+               <div class="col-6 col-md-3 mt-2">
+                   <div class="text-center bg-white shadow p-4 item-card">
+                       <img src="{% static 'images/Web-Server.png' %}">
+                       <h3 class="pt-4 pb-4" >تقارير المبيعات</h3>
+                       <p>تقارير احترافية لمشاهدة المبيعات اليومية والشهرية والتقارير المختلفة (حسب المنتج أو منصة البيع)</p>
+                   </div>
+               </div>
+               <div class="col-6 col-md-3 mt-2">
+                   <div class="text-center bg-white shadow p-4 item-card">
+                       <img src="{% static 'images/Premium-Server.png' %}">
+                       <h3 class="pt-4 pb-4" >استكشف المنافسين</h3>
+                       <p>واجهات واضحة وسهلة لمعرفة المنافسين و الأصناف التي يتجاوزك بها التجار الآخرين . </p>
+                   </div>
+               </div>
+           </div>
+       </div>
+
+       <div class="container-fluid">
+           <div class="row">
+               <div class="col-12 col-md-6">
+                   <div class="img-eng moving-div2">
+                       <img src="{% static 'images/it-engineer-in-server-room.jpg' %}">
+                   </div>
+
+                   <div class="counter d-flex justify-content-center align-items-center ">
+                       <div class="text-center">
+                           <h1 class="counterM" data-count="100"> 0+ </h1>
+                       <p>YEARS EXPERIENCE</p>
+                       </div>
+                   </div>
+               </div>
+               <div class="col-12 col-md-6  ppp moving-div3 ">
+                   <p>SKU Tracking</p>
+                   <p>قم بادارة عملك في اي مكان وزمان من خلال الموقع الالكتروني حيث سهولة الوصول والاستخدام</p>
+                   <p>كل ما تحتاجه لإدارة وتنمية أعمال التجارة الإلكترونية على منصة نون</p>
+               </div>
+           </div>
+       </div>
+       <div  id="Features" class="container-fluid why-section">
+           <h1 class="text-center">لماذا SKU Tracking ؟</h1>
+           <div class="container p-4 h-100 shadow moving-div4">
+               <div class="row">
+                   <div class="col-9 col-md-11 ">
+                       <h1>إدارة الاسعار بسهولة </h1>
+                       <p>وفر 90% من الوقت في البحث عن حلول ادارة المبيعات وقم بتحديث الأسعار والمخزون بسرعة 10X عن المنافسين لتحقيق مبيعات عالية ، فالتحديث السريع للأسعار والمنافسة سيحقق لك المزيد من المبيعات .</p>
+                   </div>
+                   <div class="col-3 col-md-1">
+                   <div class="icon d-flex justify-content-center align-items-center p-4 rounded-circle">
+                      <i class="fa-solid fa-sack-dollar"></i>
+                   </div>
+                   </div>
+               </div>
+           </div>
+           <div class="container  moving-div5">
+               <div class="row mt-4">
+               <div class="col-12 col-md-6">
+                    <div class="container p-4 shadow">
+               <div class="row">
+                   <div class="col-9 col-md-10">
+                       <h1> تحليل مالي مفصل </h1>
+                       <p>يساعدك نظام SKU Tracking بالتعامل مع عدد كبير من المنتجات والطلبات ويتيح أدوات سهلة لتقارير المبيعات وكشف الحساب والمهام الأخرى، مما يسهل عليك توسيع نطاق العمل </p>
+                   </div>
+                   <div class="col-3 col-md-2">
+                   <div class="icon d-flex justify-content-center align-items-center p-4 rounded-circle">
+                     <i class="fas fa-expand-arrows-alt"></i>
+                   </div>
+                   </div>
+               </div>
+           </div>
+               </div>
+               <div class="col-12 col-md-6">
+                   <div class="container p-4 shadow">
+               <div class="row m-0 p-0">
+                   <div class="col-9 col-md-10">
+                       <h1>فرز المنتاجات بشكل واضح</h1>
+                       <p>بإستخدام SKU Tracking بتيح لك فرز المنتاجات بشكل واضح وبشكل اسرع وحل المشكلات  بوقت أقل مما يوفر ويتيح وقت إضافي لاستثماره في تطوير العمل .</p>
+                   </div>
+                   <div class="col-3 col-md-2">
+                   <div class="icon d-flex justify-content-center align-items-center p-4 rounded-circle" >
+                      <i class="fa-solid fa-gauge-simple-high"></i>
+                   </div>
+                   </div>
+               </div>
+           </div>
+               </div>
+           </div>
+           </div>
+            <div class="container p-4 mt-4 shadow moving-div6">
+               <div class="row">
+                   <div class="col-9 col-md-11">
+                       <h1>تجهيز ملفات FBN بكل سهولة</h1>
+                       <p>اكتشف فرص FBN وقم بتجهيز طلبات FBN بسهولة ببضع نقرات بالماوس دون الحاجة لتعديل والعمل مع برنامج الإكسل . </p>
+                   </div>
+                   <div class="col-3 col-md-1">
+                   <div class="icon d-flex justify-content-center align-items-center p-4 rounded-circle">
+                      <i class="fa-solid fa-calculator"></i>
+                   </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+
+       <div class="container-fluid p-4 bg-white mt-4">
+           <div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+  <!-- Indicators/dots -->
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+    <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+  </div>
+
+  <!-- The slideshow/carousel -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'images/img1.PNG' %}" alt="Los Angeles" class="d-block" style="width:100%">
+      <div class="carousel-caption">
+        <h3>Los Angeles</h3>
+        <p>We had such a great time in LA!</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/img1.PNG' %}" alt="Chicago" class="d-block" style="width:100%">
+      <div class="carousel-caption">
+        <h3>Chicago</h3>
+        <p>Thank you, Chicago!</p>
+      </div>
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'images/img1.PNG' %}" alt="New York" class="d-block" style="width:100%">
+      <div class="carousel-caption">
+        <h3>New York</h3>
+        <p>We love the Big Apple!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Left and right controls/icons -->
+  <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </button>
+</div>
+       </div>
+
+
+       <div class="container-fluid mt-4 pt-4">
+           <h1 class="text-center mb-4 moving-div7">كيف تساعد SKU Tracking   عملك ؟</h1>
+           <div class="row  moving-div8 ">
+               <div class="col-6 col-md-3 p-2">
+                   <div class=" d-flex justify-content-center align-items-center  bg-white card-list">
+                 <div class="text-center">
+                       <i class="fa-solid fa-backward"></i>
+                   <p> معالجة سريعة للبيانات</p>
+                 </div>
+               </div>
+               </div>
+<div class="col-6 col-md-3 p-2">
+                   <div class=" d-flex justify-content-center align-items-center  bg-white card-list">
+                 <div class="text-center">
+                      <i class="fa-brands fa-sellsy"></i>
+                   <p>   حل مشكلات الاخطاء الحالية </p>
+                 </div>
+               </div>
+               </div>
+               <div class="col-6 col-md-3 p-2">
+                   <div class=" d-flex justify-content-center align-items-center  bg-white card-list">
+                 <div class="text-center">
+                      <i class="fa-solid fa-sack-dollar"></i>
+
+                   <p>   حساب الضرايب بناءا علي المشتريات والمبيعات </p>
+                 </div>
+               </div>
+               </div>
+               <div class="col-6 col-md-3 p-2">
+                   <div class=" d-flex justify-content-center align-items-center  bg-white card-list">
+                 <div class="text-center">
+                      <i class="fa-brands fa-slack"></i>
+                   <p>توفير الوقت المبزول </p>
+                 </div>
+               </div>
+               </div>
+                         </div>
+            <div class="row moving-div9">
+            <div class="col-6 col-md-4 p-2">
+                   <div class="h-100 d-flex justify-content-center align-items-center  bg-white card-list">
+                 <div class="text-center">
+                       <i class="fa-solid fa-hourglass-end"></i>
+                   <p>حفض تكاليف الموارد البشرية </p>
+                 </div>
+               </div>
+               </div>
+               <div class="col-6 col-md-4 p-2">
+                   <div class="h-100 d-flex justify-content-center align-items-center  bg-white card-list">
+                 <div class="text-center">
+                      <i class="fa-solid fa-shuffle"></i>
+                   <p>المزيد من المرونة في التعامل مع منصة نون </p>
+                 </div>
+               </div>
+               </div>
+               <div class="col-6 col-md-4 p-2">
+                   <div class=" h-100 d-flex justify-content-center align-items-center shadow bg-white card-list">
+                 <div class="text-center">
+                      <i class="fa-solid fa-file-excel"></i>
+                   <p>جميع ما تحتاج من ملفات اكسل يمكن تصديرها جاهزة من النظام </p>
+                 </div>
+               </div>
+               </div>
+                         </div>
+       </div>
+
+<!--       <div class="container-fluid mt-4 pt-4 ">-->
+<!--           <iframe-->
+<!--                   style="border-radius: 25px;"-->
+<!--    width="100%"-->
+<!--    height="700px"-->
+<!--    src="https://www.youtube.com/embed/MvWyX95X0ZU"-->
+<!--    frameborder="0"-->
+<!--    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"-->
+<!--    allowfullscreen-->
+<!--  ></iframe>-->
+
+
+<!--       </div>-->
+
+       <div class="bg-img mt-4">
+           <div class="row p-0 m-0">
+               <div class="col-12 col-md-5"></div>
+                <div class="col-12 col-md-7 d-flex justify-content-center align-items-center">
+                   <div class="section-right ddd p-4" >
+                       <h1 class="text-black"> SKU Tracking تسن وصندوق الشراء :</h1>
+                   <p class="text-black">يتفرد نظام الترا اس كيو بأدوات قوية لمعالجة جميع الحالات التي تسهل على التجار الحصول على صندوق الشراء ، ومعالجة الحالات المتغيرة في منصة نون بشكل مستمر للحصول على مبيعات أفضل وسيطرة أكثر على صندوق الشراء .</p>
+                   <a  href="{% url 'register' %}" class="btn custom-btn text-white text-black">
+                      سجل الان
+
+</a>
+                   </div>
+               </div>
+           </div>
+       </div>
+{% endblock %}

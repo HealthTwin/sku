@@ -1,0 +1,106 @@
+{% extends 'home/base_layout.html'  %}
+{% load static %}
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'AdminLte/plugins/datatables-bs4/css/dataTables.bootstrap4.css' %}">
+
+{% endblock %}
+{% block content %}
+<section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>طلبات ال FBN</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">طلبات ال FBN</a></li>
+              <li class="breadcrumb-item active">المبيعات</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+<section class="content" >
+          <div class="card">
+            <div class="card-body">
+                 <div class="table-responsive">
+              <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>رقم العنصر</th>
+                  <th>اسم المنتج</th>
+                  <th>نوع المنتج</th>
+                  <th>brand</th>
+                  <th>العائلة</th>
+                  <th>حالة العنصر</th>
+                    <td>من مدينة</td>
+                    <td> الي مديتة</td>
+                    <td>  تاريخ الطلب</td>
+                    <td>  تاريخ التوصيل</td>
+                  <th>السعر الاساسي</th>
+                  <th>سعر البيع</th>
+                  <th> سعر الفاتوره</th>
+                  <th> رقم الفاتوره</th>
+                </tr>
+                </thead>
+                <tbody>
+               {% for prod in products %}
+               <tr>
+                 <td>{{prod.item_nr}}</td>
+                  <td>{{prod.product_title}}</td>
+                  <td>{{prod.product_type}}</td>
+                  <td>{{prod.brand}}</td>
+                  <td>{{prod.family}}</td>
+                  <td>{{prod.item_status}}</td>
+                  <td>{{prod.city_from}}</td>
+                  <td>{{prod.city_to}}</td>
+                  <td>{{prod.ordered_date}}</td>
+                  <td>{{prod.delivered_date}}</td>
+                  <td>{{prod.base_price}}</td>
+                  <td>{{prod.seller_price}}</td>
+                  <td>{{prod.invoice_price}}</td>
+                  <td>{{prod.invoice_nr}}</td>
+               </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                <th>رقم العنصر</th>
+                  <th>اسم المنتج</th>
+                  <td>نوع المنتج</td>
+                  <th>brand</th>
+                  <th>العائلة</th>
+                  <td>حالة العنصر</td>
+                  <td>السعر الاساسي</td>
+                  <td>سعر البيع</td>
+                  <td> سعر الفاتوره</td>
+                  <td> رقم الفاتوره</td>
+                </tfoot>
+              </table>
+                 </div>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+
+      <!-- /.row -->
+    </section>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'AdminLte/plugins/datatables/jquery.dataTables.js' %}"></script>
+<script src="{% static 'AdminLte/plugins/datatables-bs4/js/dataTables.bootstrap4.js' %}"></script>
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+    });
+  });
+</script>
+{% endblock %}

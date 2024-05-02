@@ -1,0 +1,79 @@
+{% extends 'home/base_layout.html'  %}
+{% load static %}
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'AdminLte/plugins/datatables-bs4/css/dataTables.bootstrap4.css' %}">
+
+{% endblock %}
+{% block content %}
+<section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>المنتجات</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">المبيعات السنوية</a></li>
+              <li class="breadcrumb-item active">المبيعات</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+<section class="content" >
+          <div class="card">
+            <div class="card-body">
+             <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+                  <th>السنة</th>
+                  <th> مجموع السعر الاساسي</th>
+                  <th>مجموع سعر البيع</th>
+                  <th>مجموع الفواتير</th>
+                </tr>
+                </thead>
+                <tbody>
+               {% for prod in products %}
+               <tr>
+                 <td>{{prod.year}}</td>
+                  <td>{{prod.total_base_price}}</td>
+                  <td>{{prod.total_seller_price}}</td>
+                  <td>{{prod.total_invoice_price}}</td>
+               </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+                   <th>السنة</th>
+                  <th> مجموع السعر الاساسي</th>
+                  <th>مجموع سعر البيع</th>
+                  <th>مجموع الفواتير</th>
+
+                </tfoot>
+              </table>
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+
+      <!-- /.row -->
+    </section>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'AdminLte/plugins/datatables/jquery.dataTables.js' %}"></script>
+<script src="{% static 'AdminLte/plugins/datatables-bs4/js/dataTables.bootstrap4.js' %}"></script>
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+    });
+  });
+</script>
+{% endblock %}

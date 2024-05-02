@@ -1,0 +1,53 @@
+ img.img-scale-contact {
+   position: relative;
+   z-index: 2;
+   width: 60%;
+   height: 60%;
+   left: 100%;
+   opacity: 0;
+   transition: left 2s ease, opacity 2s;
+ }
+
+ .path-div svg {
+   height: 200px;
+ }
+
+ .div-row {
+   height: 500px !important;
+ }
+
+ .second-section {
+   position: relative;
+ }
+
+ .second-section h3 {
+   color: #03e0c0;
+   font-size: 20px;
+   font-weight: 650;
+ }
+
+ .second-section h1 {
+   line-height: 50px;
+   font-size: 50px;
+ }
+
+ .second-section .icon {
+   background-color: #03e0bf;
+ }
+
+ .second-section .icon i {
+   font-size: 20px;
+ }
+
+ .second-section .container {
+   border-radius: 20px;
+ }
+
+ .second-section .help p {
+   color: #88939f;
+
+ }
+
+ .bg-footer {
+   margin-top: 0px !important;
+ }

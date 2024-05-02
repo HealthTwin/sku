@@ -1,0 +1,490 @@
+{% extends 'home/base_layout.html'  %}
+{% load static %}
+{% block styles %}
+ <!-- Bootstrap4 Duallistbox -->
+  <link rel="stylesheet" href="{% static 'AdminLte/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css' %}">
+     <link rel="stylesheet" href="{% static 'AdminLte/plugins/daterangepicker/daterangepicker.css' %}">
+{% endblock %}
+{% block content %}
+<section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>الملفات</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#"> الملفات</a></li>
+              <li class="breadcrumb-item active">اصدار الملفات</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+<section>
+    <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">استخراج المنتجات</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label>اختر ما تريد استخراجه</label>
+                  <select class="duallistbox" multiple="multiple" >
+                    {% for column, data_type in column_products %}
+                      <option value="{{column}}-{{data_type}}">{{column}}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+                 <form class="form-horizontal" action="{% url 'extract_products' %}" method="POST">
+                      {% csrf_token %}
+                <div class="card-body" id="bodyForm">
+<!--                  <div class="form-group row">-->
+<!--                    <label  class="col-sm-2 control-label">ID =></label>-->
+<!--                    <div class="col-sm-10 row">-->
+<!--                      <div class="col-6">-->
+<!--                          <input type="number" class="form-control"  placeholder="من او يساوي">-->
+<!--                      </div>-->
+<!--                        <div class="col-6">-->
+<!--                            <input type="number" class="form-control" placeholder="الي">-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                  </div>-->
+
+
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer" id="submitProducts">
+                  <button type="submit" class="btn btn-info w-100">استخراج</button>
+                </div>
+                <!-- /.card-footer -->
+              </form>
+          </div>
+
+
+        </div>
+</section>
+<section>
+    <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">استخراج المبيعات</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label>اختر ما تريد استخراجه</label>
+                  <select class="duallistbox2" multiple="multiple" >
+                    {% for column, data_type in column_sales %}
+                      <option value="{{column}}-{{data_type}}">{{column}}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+                 <form class="form-horizontal" action="{% url 'extract_sales' %}" method="POST">
+                      {% csrf_token %}
+                <div class="card-body" id="bodyForm2">
+
+
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer" id="submitSales">
+                  <button type="submit" class="btn btn-info w-100">استخراج</button>
+                </div>
+                <!-- /.card-footer -->
+              </form>
+          </div>
+
+
+        </div>
+</section>
+<section>
+    <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">استخراج المنتحات المعروصة والغير المعروضة</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label>اختر ما تريد استخراجه</label>
+                  <select class="duallistbox3" multiple="multiple" >
+                    {% for column, data_type in column_products_live_not %}
+                      <option value="{{column}}-{{data_type}}">{{column}}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+                 <form class="form-horizontal" action="{% url 'extract_live_not' %}" method="POST">
+                      {% csrf_token %}
+                <div class="card-body" id="bodyForm3">
+
+
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer" id="liveBtn">
+                  <button type="submit" class="btn btn-info w-100">استخراج</button>
+                </div>
+                <!-- /.card-footer -->
+              </form>
+          </div>
+
+
+        </div>
+</section>
+<section>
+    <div class="card card-default">
+          <div class="card-header">
+            <h3 class="card-title">حالت المنتجات</h3>
+
+            <div class="card-tools">
+              <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i></button>
+              <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-remove"></i></button>
+            </div>
+          </div>
+          <!-- /.card-header -->
+          <div class="card-body">
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group">
+                  <label>اختر ما تريد استخراجه</label>
+                  <select class="duallistbox4" multiple="multiple" >
+                    {% for column, data_type in column_products_status %}
+                      <option value="{{column}}-{{data_type}}">{{column}}</option>
+                      {% endfor %}
+                  </select>
+                </div>
+                <!-- /.form-group -->
+              </div>
+              <!-- /.col -->
+            </div>
+            <!-- /.row -->
+                 <form class="form-horizontal" action="{% url 'extract_status_product' %}" method="POST">
+                      {% csrf_token %}
+                <div class="card-body" id="bodyForm4">
+
+
+                </div>
+                <!-- /.card-body -->
+                <div class="card-footer" id="statusBtn">
+                  <button type="submit" class="btn btn-info w-100">استخراج</button>
+                </div>
+                <!-- /.card-footer -->
+              </form>
+          </div>
+
+
+        </div>
+</section>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'AdminLte/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js' %}"></script>
+<script src="{% static 'AdminLte/plugins/daterangepicker/daterangepicker.js' %}"></script>
+<script>
+     $(function () {
+     //Bootstrap Duallistbox
+    $('.duallistbox').bootstrapDualListbox();
+    $('.duallistbox2').bootstrapDualListbox();
+    $('.duallistbox3').bootstrapDualListbox();
+    $('.duallistbox4').bootstrapDualListbox();
+$('#submitProducts').hide()
+$('#submitSales').hide()
+$('#liveBtn').hide()
+$('#statusBtn').hide()
+$('.duallistbox').on('change', function() {
+
+    var selectedValues = $(this).val();
+     var innerHtmlBody='';
+     if(selectedValues.length>0){
+     $('#submitProducts').show()
+     }else{
+     $('#submitProducts').hide()
+     }
+    selectedValues.forEach(item=>{
+    const arr=item.split('-');
+    console.log(arr[1])
+   if(arr[1]=='BigAutoField' || arr[1]=='IntegerField'){
+   innerHtmlBody+= '<div class="form-group row">\
+                    <label  class="col-sm-2 control-label">'+arr[0]+'</label>\
+                    <div class="col-sm-10 row">\
+                      <div class="col-6">\
+                          <input type="number" name="'+arr[0]+'" class="form-control"  placeholder="من او يساوي">\
+                      </div>\
+                        <div class="col-6">\
+                            <input type="number"  name="'+arr[0]+'" class="form-control" placeholder="الي">\
+                        </div>\
+                    </div>\
+                  </div>';
+   } else if (arr[1]=='CharField' || arr[1]=='TextField'){
+    innerHtmlBody+= '<div class="form-group row">\
+                    <label  class="col-sm-2 control-label">'+arr[0]+'</label>\
+                    <div class="col-sm-10 row">\
+                      <input type="text" name="'+arr[0]+'" class="form-control"  placeholder="ادخل الكلمة التي من الممكن ان تشملها">\
+                    </div>\
+                  </div>';
+   }else if (arr[1]=='BooleanField')
+   {
+    innerHtmlBody+= '<div class="form-group row">\
+                    <label  class="col-sm-2 control-label">'+arr[0]+'</label>\
+                    <div class="col-sm-10 row">\
+                      <div class="icheck-primary d-inline text-center">\
+                    <input type="checkbox" name="'+arr[0]+'" id="'+arr[0]+'">\
+                    <label for="'+arr[0]+'">\
+                    </label>\
+                  </div>\
+                    </div>\
+                  </div>';
+   }else if (arr[1]=='DateField')
+   {
+
+                    innerHtmlBody+= '<div class="form-group row">\
+                    <label  class="col-sm-2 control-label">'+arr[0]+'</label>\
+                    <div class="col-sm-10 row">\
+                       <div class="input-group">\
+                    <div class="input-group-prepend">\
+                      <span class="input-group-text">\
+                        <i class="far fa-calendar-alt"></i>\
+                      </span>\
+                    </div>\
+                    <input type="text" name="'+arr[0]+'" class="form-control float-right reservation" >\
+                  </div>\
+                    </div>\
+                  </div>';
+   }
+    });
+     $('#bodyForm').html(innerHtmlBody);
+      //Date range picker
+    $('.reservation').daterangepicker()
+  });
+
+  $('.duallistbox2').on('change', function() {
+    var selectedValues = $(this).val();
+     var innerHtmlBody='';
+     if(selectedValues.length>0){
+     $('#submitSales').show()
+     }else{
+     $('#submitSales').hide()
+     }
+    selectedValues.forEach(item=>{
+    const arr=item.split('-');
+    console.log(arr[1])
+   if(arr[1]=='BigAutoField' || arr[1]=='IntegerField' || arr[1]=='DecimalField'){
+   innerHtmlBody+= '<div class="form-group row">\
+                    <label  class="col-sm-2 control-label">'+arr[0]+'</label>\
+                    <div class="col-sm-10 row">\
+                      <div class="col-6">\
+                          <input type="number" name="'+arr[0]+'" class="form-control"  placeholder="من او يساوي">\
+                      </div>\
+                        <div class="col-6">\
+                            <input type="number"  name="'+arr[0]+'" class="form-control" placeholder="الي">\
+                        </div>\
+                    </div>\
+                  </div>';
+   } else if (arr[1]=='CharField' || arr[1]=='TextField'){
+    innerHtmlBody+= '<div class="form-group row">\
+                    <label  class="col-sm-2 control-label">'+arr[0]+'</label>\
+                    <div class="col-sm-10 row">\
+                      <input type="text" name="'+arr[0]+'" class="form-control"  placeholder="ادخل الكلمة التي من الممكن ان تشملها">\
+                    </div>\
+                  </div>';
+   }else if (arr[1]=='BooleanField')
+   {
+    innerHtmlBody+= '<div class="form-group row">\
+                    <label  class="col-sm-2 control-label">'+arr[0]+'</label>\
+                    <div class="col-sm-10 row">\
+                      <div class="icheck-primary d-inline text-center">\
+                    <input type="checkbox" name="'+arr[0]+'" id="'+arr[0]+'">\
+                    <label for="'+arr[0]+'">\
+                    </label>\
+                  </div>\
+                    </div>\
+                  </div>';
+   }else if (arr[1]=='DateField')
+   {
+
+                    innerHtmlBody+= '<div class="form-group row">\
+                    <label  class="col-sm-2 control-label">'+arr[0]+'</label>\
+                    <div class="col-sm-10 row">\
+                       <div class="input-group">\
+                    <div class="input-group-prepend">\
+                      <span class="input-group-text">\
+                        <i class="far fa-calendar-alt"></i>\
+                      </span>\
+                    </div>\
+                    <input type="text" name="'+arr[0]+'" class="form-control float-right reservation" >\
+                  </div>\
+                    </div>\
+                  </div>';
+   }
+    });
+     $('#bodyForm2').html(innerHtmlBody);
+      //Date range picker
+    $('.reservation').daterangepicker()
+  });
+
+
+    $('.duallistbox3').on('change', function() {
+    var selectedValues = $(this).val();
+     var innerHtmlBody='';
+     if(selectedValues.length>0){
+     $('#liveBtn').show()
+     }else{
+     $('#liveBtn').hide()
+     }
+    selectedValues.forEach(item=>{
+    const arr=item.split('-');
+    console.log(arr[1])
+   if(arr[1]=='BigAutoField' || arr[1]=='IntegerField' || arr[1]=='DecimalField'){
+   innerHtmlBody+= '<div class="form-group row">\
+                    <label  class="col-sm-2 control-label">'+arr[0]+'</label>\
+                    <div class="col-sm-10 row">\
+                      <div class="col-6">\
+                          <input type="number" name="'+arr[0]+'" class="form-control"  placeholder="من او يساوي">\
+                      </div>\
+                        <div class="col-6">\
+                            <input type="number"  name="'+arr[0]+'" class="form-control" placeholder="الي">\
+                        </div>\
+                    </div>\
+                  </div>';
+   } else if (arr[1]=='CharField' || arr[1]=='TextField'){
+    innerHtmlBody+= '<div class="form-group row">\
+                    <label  class="col-sm-2 control-label">'+arr[0]+'</label>\
+                    <div class="col-sm-10 row">\
+                      <input type="text" name="'+arr[0]+'" class="form-control"  placeholder="ادخل الكلمة التي من الممكن ان تشملها">\
+                    </div>\
+                  </div>';
+   }else if (arr[1]=='BooleanField')
+   {
+    innerHtmlBody+= '<div class="form-group row">\
+                    <label  class="col-sm-2 control-label">'+arr[0]+'</label>\
+                    <div class="col-sm-10 row">\
+                      <div class="icheck-primary d-inline text-center">\
+                    <input type="checkbox" name="'+arr[0]+'" id="'+arr[0]+'">\
+                    <label for="'+arr[0]+'">\
+                    </label>\
+                  </div>\
+                    </div>\
+                  </div>';
+   }else if (arr[1]=='DateField')
+   {
+
+                    innerHtmlBody+= '<div class="form-group row">\
+                    <label  class="col-sm-2 control-label">'+arr[0]+'</label>\
+                    <div class="col-sm-10 row">\
+                       <div class="input-group">\
+                    <div class="input-group-prepend">\
+                      <span class="input-group-text">\
+                        <i class="far fa-calendar-alt"></i>\
+                      </span>\
+                    </div>\
+                    <input type="text" name="'+arr[0]+'" class="form-control float-right reservation" >\
+                  </div>\
+                    </div>\
+                  </div>';
+   }
+    });
+     $('#bodyForm3').html(innerHtmlBody);
+      //Date range picker
+    $('.reservation').daterangepicker()
+  });
+
+
+      $('.duallistbox4').on('change', function() {
+    var selectedValues = $(this).val();
+     var innerHtmlBody='';
+     if(selectedValues.length>0){
+     $('#statusBtn').show()
+     }else{
+     $('#statusBtn').hide()
+     }
+    selectedValues.forEach(item=>{
+    const arr=item.split('-');
+    console.log(arr[1])
+   if(arr[1]=='BigAutoField' || arr[1]=='IntegerField' || arr[1]=='DecimalField'){
+   innerHtmlBody+= '<div class="form-group row">\
+                    <label  class="col-sm-2 control-label">'+arr[0]+'</label>\
+                    <div class="col-sm-10 row">\
+                      <div class="col-6">\
+                          <input type="number" name="'+arr[0]+'" class="form-control"  placeholder="من او يساوي">\
+                      </div>\
+                        <div class="col-6">\
+                            <input type="number"  name="'+arr[0]+'" class="form-control" placeholder="الي">\
+                        </div>\
+                    </div>\
+                  </div>';
+   } else if (arr[1]=='CharField' || arr[1]=='TextField'){
+    innerHtmlBody+= '<div class="form-group row">\
+                    <label  class="col-sm-2 control-label">'+arr[0]+'</label>\
+                    <div class="col-sm-10 row">\
+                      <input type="text" name="'+arr[0]+'" class="form-control"  placeholder="ادخل الكلمة التي من الممكن ان تشملها">\
+                    </div>\
+                  </div>';
+   }else if (arr[1]=='BooleanField')
+   {
+    innerHtmlBody+= '<div class="form-group row">\
+                    <label  class="col-sm-2 control-label">'+arr[0]+'</label>\
+                    <div class="col-sm-10 row">\
+                      <div class="icheck-primary d-inline text-center">\
+                    <input type="checkbox" name="'+arr[0]+'" id="'+arr[0]+'">\
+                    <label for="'+arr[0]+'">\
+                    </label>\
+                  </div>\
+                    </div>\
+                  </div>';
+   }else if (arr[1]=='DateField')
+   {
+
+                    innerHtmlBody+= '<div class="form-group row">\
+                    <label  class="col-sm-2 control-label">'+arr[0]+'</label>\
+                    <div class="col-sm-10 row">\
+                       <div class="input-group">\
+                    <div class="input-group-prepend">\
+                      <span class="input-group-text">\
+                        <i class="far fa-calendar-alt"></i>\
+                      </span>\
+                    </div>\
+                    <input type="text" name="'+arr[0]+'" class="form-control float-right reservation" >\
+                  </div>\
+                    </div>\
+                  </div>';
+   }
+    });
+     $('#bodyForm4').html(innerHtmlBody);
+      //Date range picker
+    $('.reservation').daterangepicker()
+  });
+     });
+</script>
+{% endblock %}

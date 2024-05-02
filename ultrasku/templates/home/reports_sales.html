@@ -1,0 +1,94 @@
+{% extends 'home/base_layout.html'  %}
+{% load static %}
+{% block styles %}
+  <link rel="stylesheet" href="{% static 'AdminLte/plugins/datatables-bs4/css/dataTables.bootstrap4.css' %}">
+
+{% endblock %}
+{% block content %}
+<section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>الادارة المالية </h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">الارباح</a></li>
+              <li class="breadcrumb-item active">الادارة المالية </li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+<section class="content" >
+          <div class="card">
+            <div class="card-body">
+
+          <form method="POST">
+              {% csrf_token %}
+              <div class="table-responsive">
+                  <table id="example1" class="table table-bordered table-striped">
+                <thead>
+                <tr>
+
+                  <th>اسم المنتج</th>
+                  <th> العدد</th>
+                 <th>متوسط سعر البيع </th>
+                    <th>متوسط السعر الاساسي</th>
+                    <th>  مجموع سعر البيع</th>
+                    <th>  مجموع السعر  الاساسي</th>
+                    <th>     مجموع الارباح</th>
+
+
+
+                </tr>
+                </thead>
+                <tbody>
+               {% for prod in products %}
+               <tr>
+                  <td>{{prod.noon_title}}</td>
+                  <td>{{prod.total_count}}</td>
+                  <td>{{prod.avg_seller_price|floatformat:2}}</td>
+                  <td>{{prod.avg_entered_price|floatformat:2}}</td>
+                  <td>{{prod.total_seller_price|floatformat:2}}</td>
+                  <td>{{prod.total_entered_price|floatformat:2}}</td>
+                  <td>{{prod.total_price_difference|floatformat:2}}</td>
+               </tr>
+                {% endfor %}
+                </tbody>
+                <tfoot>
+               <td colspan="5" class="text-center "><h5>مجموع الربح</h5></td>
+               <td class="text-red">{{total_price_difference_sum}}</td>
+                </tfoot>
+              </table>
+                  </div>
+              <button type="submit" class="btn btn-primary w-100 mt-4">حفظ الاسعار</button>
+          </form>
+
+            </div>
+            <!-- /.card-body -->
+          </div>
+          <!-- /.card -->
+
+      <!-- /.row -->
+    </section>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'AdminLte/plugins/datatables/jquery.dataTables.js' %}"></script>
+<script src="{% static 'AdminLte/plugins/datatables-bs4/js/dataTables.bootstrap4.js' %}"></script>
+<script>
+  $(function () {
+    $("#example1").DataTable();
+    $('#example2').DataTable({
+      "paging": true,
+      "lengthChange": false,
+      "searching": false,
+      "ordering": true,
+      "info": true,
+      "autoWidth": false,
+    });
+  });
+</script>
+{% endblock %}

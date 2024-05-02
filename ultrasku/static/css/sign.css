@@ -1,0 +1,70 @@
+body{
+background-color:#37474f !important;
+}
+.div-sign{
+border-radius:5px;
+width:25%;
+}
+@media screen and (max-width: 500px) {
+  .div-sign{
+width:90%;
+}
+}
+
+.div-sign p{
+line-height:3px;
+font-size:13px;
+font-weight:bold;
+}
+.div-sign p:nth-child(3) {
+  color: #999999;
+}
+ .logo {
+      font-family: Arial, sans-serif;
+      font-size: 20px;
+      font-weight: bold;
+      color: #007bff;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+
+    }
+.ml-15{
+margin-left: 15px;
+}
+.language-div{
+background-color:#fafafa;
+border-radius:3px;
+border:1px solid #999999;
+cursor:pointer;
+}
+.language-div:hover{
+background-color:#999999;
+}
+.input_email{
+text-align:right;
+padding-right:35px !important;
+}
+.input-group-icon {
+text-align:right;
+      position: relative;
+    }
+
+    .input-group-icon i {
+      position: absolute;
+      right: 10px;
+      top: 50%;
+      transform: translateY(-50%);
+      cursor: pointer;
+      color:#8f8f8f;
+    }
+    .forget_Link{
+    color:#2196f3;
+    text-align:left !important;
+    }
+    .forget_Link:hover{
+    color:blue;
+    }
+    .text-small-p{
+    font-size:13px;
+    color:#8f8f8f;
+    }

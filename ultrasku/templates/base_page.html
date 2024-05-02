@@ -1,0 +1,154 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{%block title %}{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.png' %}">
+    <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/index.css' %}" rel="stylesheet">
+    <link href="{% static 'css/contact.css' %}" rel="stylesheet">
+     <link href="{% static 'css/pricing.css' %}" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'AdminLte/plugins/toastr/toastr.min.css' %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+
+<body dir="rtl">
+    <div class="fixed-bottom-left">
+        <a class="btn custom-btn text-white" href="https://wa.me/+201012139683">
+            تواصل معنا
+            <span class="btn-icon"><i class="fa-brands fa-whatsapp"></i></span>
+        </a>
+    </div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid pt-1">
+            <a class="navbar-brand" href="#">
+                <div class="logo">SKU Traking</div>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        {% if index == 0 %}
+                        <a class="nav-link active" href="{% url 'index' %}">الرئيسية</a>
+                        {% else %}
+                        <a class="nav-link " href="{% url 'index' %}">الرئيسية</a>
+                        {% endif %}
+                    </li>
+                    <li class="nav-item">
+                        {% if index == 1 %}
+                        <a class="nav-link active" href="{% url 'contact' %}">تواصل معنا</a>
+                        {% else %}
+                        <a class="nav-link" href="{% url 'contact' %}">تواصل معنا</a>
+                        {% endif %}
+                    </li>
+                    <li class="nav-item">
+                        {% if index == 2 %}
+                        <a class="nav-link active" href="{% url 'why_me' %}#Features">الميزات</a>
+                        {% else %}
+                        <a class="nav-link " href="{% url 'why_me' %}#Features">الميزات</a>
+                        {% endif %}
+                    </li>
+
+                     <li class="nav-item">
+                        {% if index == 3 %}
+                        <a class="nav-link active" href="{% url 'pricing' %}">الباقات</a>
+                        {% else %}
+                        <a class="nav-link " href="{% url 'pricing' %}">الباقات</a>
+                        {% endif %}
+                    </li>
+
+                </ul>
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="btn custom-btn" href="{% url 'login' %}">
+                            تسجيل الدخول
+                            <span class="btn-icon"><i class="fas fa-user-circle"></i></span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    {% block content %}
+    {% endblock %}
+    <footer>
+        <div class="container-fluid mt-4 footer-div">
+
+            <div class="mt-4 row bg-footer">
+                <div class="col-12 col-md-3 text-center text-white">
+                    <p>Contacts</p>
+                    <p>Swift Tech Trading L.L.C</p>
+                    <p>Phone : +971 4 409 6731</p>
+                    <p>FAX : +971 4 409 6850</p>
+                    <p>info@cd .com</p>
+                    <p>Emaar Boulevard, Dubai – UAE</p>
+                    <p>Level 23 - Boulevard Plaza Tower 2</p>
+                    <p>PO Box : 124342</p>
+                </div>
+                <div class="col-12 col-md-3 text-center">
+                    <a href="#">
+                        <p>Privacy & Policy</p>
+                    </a>
+                    <a href="#">
+                        <p>Terms & Conditions</p>
+                    </a>
+                    <a href="#">
+                        <p>Refund Policy</p>
+                    </a>
+                </div>
+                <div class="col-12 col-md-3 text-center">
+                    <a href="#">
+                        <p>SKU Traking</p>
+                    </a>
+                    <a href="#">
+                        <p>Contact Us</p>
+                    </a>
+                </div>
+                <div class="col-12 col-md-3">
+                     <div class="logo" style="color:white; font-size:25px;">SKU Traking</div>
+                </div>
+
+            </div>
+        </div>
+        <div class="bg-middle-footer d-flex justify-content-center align-items-center">
+            All rights reserved © 2023
+        </div>
+        <div class="bg-white d-flex justify-content-center align-items-center p-2">
+            <img src="{% static 'images/cards.png' %}">
+        </div>
+    </footer>
+
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="https://kit.fontawesome.com/af74596b83.js" crossorigin="anonymous"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+<script src="{% static 'AdminLte/plugins/toastr/toastr.min.js' %}"></script>
+
+
+
+    {% block scripts %}
+    {% endblock %}
+<script>
+        {% if messages %}
+            {% for message in messages %}
+               {% if message.tags  == 'success' %}
+                    toastr.success('{{message}}')
+                    {% elif message.tags  == 'error' %}
+                        toastr.error('{{message}}')
+                     {% elif  message.tags == 'info' %}
+                        toastr.info('{{message}}')
+                      {% else %}
+                      toastr.warning('{{message}}')
+                      {% endif %}
+            {% endfor %}
+        {% endif %}
+</script>
+</body>
+
+</html>

@@ -1,0 +1,283 @@
+{% extends 'home/base_layout.html'  %}
+{% load static %}
+{% block styles %}
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+ <link rel="stylesheet" href="{% static 'AdminLte/plugins/dropzone/min/dropzone.min.css' %}">
+<style>
+  #customers {
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+#customers td, #customers th {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align:center !important;
+}
+
+#customers tr:nth-child(even){background-color: #f2f2f2;}
+
+#customers tr:hover {background-color: #ddd;}
+
+#customers th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: #e9ecef;
+  color: black;
+}
+</style>
+{% endblock %}
+{%  block content %}
+
+    {% csrf_token %}
+            <div class="card card-default">
+              <div class="card-header">
+                <h3 class="card-title float-left">تحميل الملفات  <small><em>تحميل ملفات مثل </em> csv or excel </small></h3>
+              </div>
+              <div class="card-body" dir="ltr">
+                <div id="actions" class="row">
+                  <div class="col-lg-6">
+                    <div class="btn-group w-100">
+                      <span class="btn btn-success col fileinput-button">
+                        <i class="fas fa-plus"></i>
+                        <span>Add files</span>
+                      </span>
+                      <button type="submit" class="btn btn-primary col start">
+                        <i class="fas fa-upload"></i>
+                        <span>Start upload</span>
+                      </button>
+                      <button type="reset" class="btn btn-warning col cancel">
+                        <i class="fas fa-times-circle"></i>
+                        <span>Cancel upload</span>
+                      </button>
+                    </div>
+                  </div>
+                  <div class="col-lg-6 d-flex align-items-center">
+                    <div class="fileupload-process w-100">
+                      <div id="total-progress" class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                        <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="table table-striped files" id="previews">
+                  <div id="template" class="row mt-2">
+                    <div class="col-auto">
+                        <span class="preview"><img src="data:," alt="" data-dz-thumbnail /></span>
+                    </div>
+                    <div class="col d-flex align-items-center">
+                        <p class="mb-0">
+                          <span class="lead" data-dz-name></span>
+                          (<span data-dz-size></span>)
+                        </p>
+                        <strong class="error text-danger" data-dz-errormessage></strong>
+                    </div>
+                    <div class="col-4 d-flex align-items-center">
+                        <div class="progress progress-striped active w-100" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+                          <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
+                        </div>
+                    </div>
+                    <div class="col-auto d-flex align-items-center">
+                      <div class="btn-group">
+                        <button class="btn btn-primary start">
+                          <i class="fas fa-upload"></i>
+                          <span>Start</span>
+                        </button>
+                        <button data-dz-remove class="btn btn-warning cancel">
+                          <i class="fas fa-times-circle"></i>
+                          <span>Cancel</span>
+                        </button>
+                        <button data-dz-remove class="btn btn-danger delete">
+                          <i class="fas fa-trash"></i>
+                          <span>Delete</span>
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+<table  id="customers">
+  <tr>
+    <th>النوع الرئيسي</th>
+    <th>نوع الملف</th>
+    <th>التخصيص</th>
+    <th>التاريخ</th>
+    <th>الحالة</th>
+    <th>رسالة الحالة</th>
+  </tr>
+  {% for file in files  %}
+  <tr id="{{file.id}}id">
+    <td>{{file.type_main}}</td>
+    <td>{{file.type_file}}</td>
+    <td></td>
+    <td>{{file.date_upload}}</td>
+    <td>{{file.state_file}}</td>
+    <td>{{file.stat_message}}</td>
+  </tr>
+  {% endfor %}
+</table>
+{% endblock %}
+{% block scripts %}
+<script src="{% static 'AdminLte/plugins/dropzone/min/dropzone.min.js' %}"></script>
+<!-- SweetAlert2 -->
+<script src="{% static 'AdminLte/plugins/sweetalert2/sweetalert2.min.js' %}"></script>
+<!-- Toastr -->
+<script src="{% static 'AdminLte/plugins/toastr/toastr.min.js' %}"></script>
+<script type="text/javascript">
+
+
+  $(function () {
+
+    $("input[data-bootstrap-switch]").each(function(){
+      $(this).bootstrapSwitch('state', $(this).prop('checked'));
+    })
+  })
+  // DropzoneJS Demo Code Start
+  Dropzone.autoDiscover = false
+
+  // Get the template HTML and remove it from the doumenthe template HTML and remove it from the doument
+  var previewNode = document.querySelector("#template")
+  previewNode.id = ""
+  var previewTemplate = previewNode.parentNode.innerHTML
+  previewNode.parentNode.removeChild(previewNode)
+
+  var myDropzone = new Dropzone(document.body, { // Make the whole body a dropzone
+    url: "/manage_files/upload/",
+    paramName: 'file',
+    acceptedFiles: '.xls,.xlsx,.csv',
+    thumbnailWidth: 80,
+    thumbnailHeight: 80,
+    parallelUploads: 20,
+    parallelUploads: 1,
+    previewTemplate: previewTemplate,
+    autoQueue: false, // Make sure the files aren't queued until manually added
+    previewsContainer: "#previews", // Define the container to display the previews
+    clickable: ".fileinput-button",
+    init:function() {
+    var myDropzone = this;
+          var csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+                myDropzone.on("sending", function(file, xhr, formData) {
+                    formData.append("csrfmiddlewaretoken", csrfToken);
+                });
+
+          this.on('success', function(file, response) {
+
+           toastr.success('تم رفع الملف بنجاح')
+                });
+
+          this.on('error', function(file, errorMessage) {
+          toastr.error('خطأ اثناء رفع الملف '+errorMessage)
+                    console.error('Error uploading the file: ' + errorMessage);
+
+                });
+
+            },
+  })
+
+  myDropzone.on("addedfile", function(file) {
+    // Hookup the start button
+    file.previewElement.querySelector(".start").onclick = function() { myDropzone.enqueueFile(file) }
+  })
+
+  // Update the total progress bar
+  myDropzone.on("totaluploadprogress", function(progress) {
+    document.querySelector("#total-progress .progress-bar").style.width = progress + "%"
+  })
+
+  myDropzone.on("sending", function(file) {
+    // Show the total progress bar when upload starts
+    document.querySelector("#total-progress").style.opacity = "1"
+    // And disable the start button
+    file.previewElement.querySelector(".start").setAttribute("disabled", "disabled")
+  })
+
+  // Hide the total progress bar when nothing's uploading anymore
+  myDropzone.on("queuecomplete", function(progress) {
+    document.querySelector("#total-progress").style.opacity = "0"
+  })
+
+  // Setup the buttons for all transfers
+  // The "add files" button doesn't need to be setup because the config
+  // `clickable` has already been specified.
+  document.querySelector("#actions .start").onclick = function() {
+    myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
+  }
+  document.querySelector("#actions .cancel").onclick = function() {
+    myDropzone.removeAllFiles(true)
+  }
+
+
+
+// get status file afetr uploud it
+ function getStatus() {
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", "{% url 'get_status_file' %}", true);
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === XMLHttpRequest.DONE && xhr.status === 200) {
+                    // Handle the response from the server
+                    const responseData = JSON.parse(xhr.responseText);
+
+                     if (responseData.result.id != undefined ) {
+                    appendRowToTable(responseData.result)
+                    }
+                }
+            };
+            xhr.send();
+        }
+
+        // Call getStatus function initially and then every 500ms
+        getStatus();
+        setInterval(getStatus, 500);
+
+function appendRowToTable(data) {
+    const tables = document.getElementsByTagName('table');
+    if (tables.length === 0) {
+      // No table found in the document, create a new table
+      const table = document.createElement('table');
+      table.id = 'customers';
+      document.body.appendChild(table);
+    }
+
+    const table = tables[0]; // Get the first table in the document
+    const existingRow = document.getElementById(`${data.id}id`);
+
+    if (existingRow) {
+      // If the row with the specified id already exists, update the row data
+      const cells = existingRow.cells;
+      cells[0].textContent = data.type_main;
+      cells[1].textContent = data.type_file;
+      cells[3].textContent = data.date_upload;
+      cells[4].textContent = data.state_file;
+      cells[5].textContent = data.stat_message;
+    } else {
+      // If the row with the specified id does not exist, insert a new row at the beginning of the table
+      const newRow = table.insertRow(1);
+
+      newRow.id = `${data.id}id`;
+
+      // Insert cells and set their content
+      const cell1 = newRow.insertCell();
+      cell1.textContent = data.type_main;
+
+      const cell2 = newRow.insertCell();
+      cell2.textContent = data.type_file;
+
+      const cell3 = newRow.insertCell();
+      cell3.textContent = ''; // Empty cell
+
+      const cell4 = newRow.insertCell();
+      cell4.textContent = data.date_upload;
+
+      const cell5 = newRow.insertCell();
+      cell5.textContent = data.state_file;
+
+      const cell6 = newRow.insertCell();
+      cell6.textContent = data.stat_message;
+    }
+  }
+</script>
+{% endblock %}

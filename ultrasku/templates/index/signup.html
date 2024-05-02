@@ -1,0 +1,128 @@
+{%  load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{% static 'css/sign.css' %}">
+     <link href="{% static 'bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+     <link rel="stylesheet" href="{% static 'AdminLte/plugins/toastr/toastr.min.css' %}">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body class="d-flex justify-content-center align-items-center">
+<div class="text-center bg-white mt-4  pt-4 pb-4 div-sign">
+<!--    <img src="{% static 'images/logo.png'%}">-->
+    <p class="mt-4">أهلا بك  .</p>
+    <p>تسجيل  حسابك</p>
+
+    <div class="d-flex justify-content-center align-items-center p-2 m-2 mt-4 shadow form-group language-div">
+<!--    <div>-->
+<!--        <span>English</span>-->
+<!--        <img class="ml-15" src="{% static 'images/gb.png' %}" width="40px" height="20px">-->
+<!--    </div>-->
+          <a class="logo text-decoration-none" href="{% url 'home' %}">SKU Tracking</a>
+    </div>
+    <form method="post">
+         {% csrf_token %}
+
+   <div class="input-group-icon m-2 mt-4">
+     {{ form.first_name }}
+      <i class="fas fa-user"></i>
+    </div>
+       {% if form.first_name.errors %}
+            <div class="text-danger">
+                {% for error in form.first_name.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    <div class="input-group-icon m-2 mt-4">
+     {{ form.last_name }}
+      <i class="fas fa-user"></i>
+    </div>
+{% if form.last_name.errors %}
+            <div class="text-danger">
+                {% for error in form.last_name.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    <div class="input-group-icon m-2 mt-4">
+      {{ form.phone_number }}
+     <i class="fa-solid fa-phone"></i>
+    </div>
+
+        {% if form.phone_number.errors %}
+            <div class="text-danger">
+                {% for error in form.phone_number.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+     <div class="input-group-icon m-2 mt-4">
+        {{ form.email }}
+      <i class="fas fa-user"></i>
+    </div>
+        {% if form.email.errors %}
+            <div class="text-danger">
+                {% for error in form.email.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+    <div class="input-group-icon m-2 mt-4">
+      {{form.password}}
+      <i class="fa-solid fa-lock "></i>
+    </div>
+{% if form.password.errors %}
+            <div class="text-danger">
+                {% for error in form.password.errors %}
+                    <p>{{ error }}</p>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+    <div class=" m-2 mt-4">
+    <button type="submit" class="btn btn-primary w-100">
+     <i class="fa-solid fa-right-to-bracket"></i> <span class="ms-2">اشتراك</span>
+    </button>
+    </div>
+        </form>
+    <div class="row">
+        <div class="col-3 pe-2">
+            <hr/>
+        </div>
+        <div class="col-6 text-small-p d-flex justify-content-center align-items-center">هل لديك حساب بالفعل ؟</div>
+        <div class="col-3 ps-2">
+            <hr/>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center align-items-center p-2 m-2 mt-4 shadow form-group language-div">
+    <div>
+        <a class="text-decoration-none" href="{% url 'login' %}">تسحيل الدخول</a>
+    </div>
+    </div>
+</div>
+</div>
+ <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="https://kit.fontawesome.com/af74596b83.js" crossorigin="anonymous"></script>
+<script src="{% static 'AdminLte/plugins/toastr/toastr.min.js' %}"></script>
+
+<script>
+        {% if messages %}
+            {% for message in messages %}
+               {% if message.tags  == 'success' %}
+                    toastr.success('{{message}}')
+                    {% elif message.tags  == 'error' %}
+                        toastr.error('{{message}}')
+                     {% elif  message.tags == 'info' %}
+                        toastr.info('{{message}}')
+                      {% else %}
+                      toastr.warning('{{message}}')
+                      {% endif %}
+            {% endfor %}
+        {% endif %}
+</script>
+</body>
+</html>

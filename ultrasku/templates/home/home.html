@@ -1,0 +1,201 @@
+{% extends 'home/base_layout.html' %}
+{% load static %}
+{% block styles %}
+  <link rel="stylesheet" href="{% static  'AdminLte/plugins/jsgrid/jsgrid.min.css' %}">
+  <link rel="stylesheet" href="{% static  'AdminLte/plugins/jsgrid/jsgrid-theme.min.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'slick/slick/slick-theme.css' %}"/>
+<link rel="stylesheet" type="text/css" href="{% static 'slick/slick/slick.css' %}"/>
+<style>
+  table tr th ,table tr td{
+  text-align:center;
+  padding:12px;
+  background-color:#c3e6ca;
+  }
+  table,table th,table td{
+  border-color:#8fd19e;
+  }
+  .slick-prev {
+
+
+}
+
+.slick-next {
+
+    color: #ffffff;
+   right:5px;
+}
+</style>
+{% endblock %}
+{% block content %}
+<!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>الرئيسية</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">الرئيسية</a></li>
+              <li class="breadcrumb-item active">الرئيسية</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">مجموع القرير </h3>
+        </div>
+        <table border="1" class="mt-4">
+          <tr>
+            <th>
+             اليوم
+            </th>
+            <td>
+              {{tody}} ريال
+            </td>
+            <th>في الامس</th>
+             <td>
+              {{yesterday}} ريال
+            </td>
+            <th>هذا الشهر</th>
+            <td>
+                {{this_month}} ريال
+            </td>
+            <th>الشهر الماضي</th>
+             <td>
+              {{last_month_price}} ريال
+            </td>
+
+          </tr>
+        </table>
+        <!-- /.card-header -->
+<!--        <div class="card-body">-->
+<!--          <div id="jsGrid1"></div>-->
+<!--        </div>-->
+        <!-- /.card-body -->
+      </div>
+
+        <div class="responsive" style="width:98%" dir="rlt">
+            {% for item in top_items %}
+            <div class="carousel-item slide">
+                <div class="">
+                    <img src="{{item.image_path}}" width="100px" height="100px">
+
+                </div>
+                <div class="">المبيعات  - الكمية</div>
+                <div class="">{{item.total_seller_price}}ريال-{{item.id_count}}</div>
+
+            </div>
+            {% endfor %}
+        </div>
+
+    <!-- Add more carousel items -->
+
+         <div class="responsive2 my-4"  style="width:98%" dir="ltr">
+              {% for item in all_items %}
+            <div class="carousel-item slide">
+                <div class="">
+                    <img src="{{item.image_path}}" width="100px" height="100px">
+
+                </div>
+                <div class="">المبيعات  - الكمية</div>
+                <div class="">{{item.total_seller_price}}ريال-{{item.id_count}}</div>
+
+            </div>
+            {% endfor %}
+
+    <!-- Add more carousel items -->
+</div>
+
+      <!-- /.card -->
+    </section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'AdminLte/plugins/jsgrid/demos/db.js' %}"></script>
+<script src="{% static 'AdminLte/plugins/jsgrid/jsgrid.min.js' %}"></script>
+<script src="{% static 'slick/slick/slick.min.js' %}"></script>
+<script>
+  /*$(function () {
+    $("#jsGrid1").jsGrid({
+        height: "100%",
+        width: "100%",
+
+        sorting: true,
+        paging: true,
+
+        data: db.clients,
+
+        fields: [
+            { name: "اليوم", type: "text", width: 150 },
+            { name: "Age", type: "number", width: 50 },
+            { name: "Address", type: "text", width: 200 },
+            { name: "Country", type: "select", items: db.countries, valueField: "Id", textField: "Name" },
+            { name: "Married", type: "checkbox", title: "Is Married" }
+        ]
+    });
+  });*/
+  $('.responsive').slick({
+  slidesToShow: 5,
+  slidesToScroll: 5,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+  ]
+});
+
+ $('.responsive2').slick({
+  slidesToShow: 5,
+  slidesToScroll: 4,
+  responsive: [
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 3,
+        slidesToScroll: 3,
+
+      }
+    },
+    {
+      breakpoint: 600,
+      settings: {
+        slidesToShow: 2,
+        slidesToScroll: 2
+      }
+    },
+    {
+      breakpoint: 480,
+      settings: {
+        slidesToShow: 1,
+        slidesToScroll: 1
+      }
+    }
+  ]
+});
+</script>
+{%  endblock %}
